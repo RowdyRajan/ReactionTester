@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<title>Reaction Tester</title>
+<meta charset="utf-8" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+	#square{
+		width:200px;
+		height:200px;
+		background-color:red;
+		display:none;
+	}
+</style>
+<script>
+	function randomSeconds(upperLimit){
+		var x = Math.random() * (upperLimit +1); 
+		return Math.floor(x);
+	}
+</script>
+</head>
+
+<body>
+
+<div id="square"></div>
+
+<script>
+	
+	function displayAgain(){
+		var x = randomSeconds(5);
+		console.log(x);
+		
+		setTimeout(function(){
+			document.getElementById("square").style.display="block";
+		}, (x *1000));
+		
+	}
+	
+	displayAgain();
+	
+	document.getElementById("square").onclick = function(){
+		this.style.display="none";
+		displayAgain();
+	}
+	
+</script>
+</body>
+
+</html>
