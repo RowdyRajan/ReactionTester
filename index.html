@@ -15,8 +15,8 @@
 </style>
 <script>
 	function randomSeconds(upperLimit){
-		var x = Math.random() * (upperLimit +1); 
-		return Math.floor(x);
+		return Math.random() * (upperLimit +1); 
+		
 	}
 </script>
 </head>
@@ -24,23 +24,29 @@
 <body>
 
 <div id="square"></div>
-
+	<p>Your reaction time: <span id="reactionTime"></span></p>
 <script>
 	
+	var createdTime; var clickedTime; var reactionTime; 
+
 	function displayAgain(){
 		var x = randomSeconds(5);
 		console.log(x);
-		
 		setTimeout(function(){
 			document.getElementById("square").style.display="block";
+			createdTime = Date.now();
 		}, (x *1000));
+		
 		
 	}
 	
 	displayAgain();
 	
 	document.getElementById("square").onclick = function(){
+		clickedTime= Date.now();
 		this.style.display="none";
+		reactionTime = ((clickedTime-createdTime)/1000);
+		document.getElementById("reactionTime").innerHTML = reactionTime +'s';
 		displayAgain();
 	}
 	
