@@ -7,25 +7,87 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 	#square{
+		position:absolute;
+		top:50%;
 		width:200px;
 		height:200px;
 		background-color:red;
 		display:none;
-	}
-</style>
-<script>
-	function randomSeconds(upperLimit){
-		return Math.random() * (upperLimit +1); 
 		
 	}
+	body{
+		width:100%;
+		height:100%;
+	}
+</style>
+
+<script>
+	//Returns a decimal number from zero to the upper limit 
+	function randomSeconds(upperLimit){
+		return Math.random() * (upperLimit +1); 
+	}
+	
+	//Returns a whole number from zero to the upper limit 
+	function randomNumber(upperLimit){
+		return Math.floor(Math.random() *(upperLimit) + 1);
+	}
+	//Returns a string of a random color
+	function randomColor(){
+		var colorNum = Math.floor(Math.random() * 6);
+		
+		switch(colorNum){
+			case 0:
+				return "red";
+				break;
+			
+			case 1:
+				return "blue";
+				break;
+				
+			case 2:
+				return "green";
+				break;
+				
+			case 3:
+				return "pink";
+				break;
+				
+			case 4:
+				return "orange";
+				break;
+				
+			case 5:
+				return "yellow";
+				break;
+			
+		}
+		
+	
+		
+	}	
 </script>
 </head>
 
 <body>
 
 <div id="square"></div>
-	<p>Your reaction time: <span id="reactionTime"></span></p>
+<p>Your reaction time: <span id="reactionTime"></span></p>
 <script>
+	
+	
+	function randomShape(){
+		document.getElementById("square").style.display="block";
+		var shape = randomNumber(2);
+		console.log(shape);
+		if(shape == 1){
+			document.getElementById("square").style.borderRadius = "100px";		
+		}else{
+			document.getElementById("square").style.borderRadius = 0;	
+		}
+		document.getElementById("square").style.backgroundColor = randomColor();
+		document.getElementById("square").style.top = randomNumber(99) + "%"
+		document.getElementById("square").style.left = randomNumber(99) + "%"
+	}
 	
 	var createdTime; var clickedTime; var reactionTime; 
 
@@ -33,7 +95,7 @@
 		var x = randomSeconds(5);
 		console.log(x);
 		setTimeout(function(){
-			document.getElementById("square").style.display="block";
+			randomShape();
 			createdTime = Date.now();
 		}, (x *1000));
 		
